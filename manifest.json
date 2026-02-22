@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "mods": [
+    {
+      "name": "jei_1.12.2-4.16.1.1013.jar",
+      "url": "https://raw.githubusercontent.com/Akashdeep-Kallon/MC-modpack-server/main/mods/jei_1.12.2-4.16.1.1013.jar",
+      "sha256": "52d0782ad805c20b1061711faa64a5fdc4640639738f7cedb1e5b0be46fc8685"
+    }
+  ]
+}
