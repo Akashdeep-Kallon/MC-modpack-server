@@ -1,9 +1,12 @@
 import os, hashlib, json
 
+# Configuración del repositorio y carpeta de mods
+usuario = "Akashdeep-Kallon"
+repo = "MC-modpack-server"
 # Carpeta con los mods
 mods_folder = "mods"
 # Base URL para raw GitHub
-base_url = "https://raw.githubusercontent.com/USUARIO/REPO/main/mods/"
+base_url = "https://raw.githubusercontent.com/" + usuario + "/" + repo + "/main/mods/"
 
 manifest = {
     "version": "1.0",
