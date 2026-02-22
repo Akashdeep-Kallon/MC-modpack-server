@@ -11,30 +11,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # 1️⃣ Clonar repo con token persistente
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        persist-credentials: true
 
+    # 2️⃣ Instalar Python
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.x'
 
+    # 3️⃣ Ejecutar script para generar manifest
     - name: Generate manifest
       run: python3 generate_manifest.py
 
-    - name: Configure Git to push with token
+    # 4️⃣ Commit y push
+    - name: Commit and push manifest
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Commit and push manifest
-      run: |
         git add manifest.json
         git commit -m "Actualizar manifest.json"
-        git push origin HEAD:main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        git push
       continue-on-error: true
