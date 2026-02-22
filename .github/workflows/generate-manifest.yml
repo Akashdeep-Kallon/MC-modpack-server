@@ -20,14 +20,21 @@ jobs:
         python-version: '3.x'
 
     - name: Generate manifest
-      run: |
-        python3 generate_manifest.py
+      run: python3 generate_manifest.py
 
-    - name: Commit and push manifest
+    - name: Configure Git to push with token
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
+        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Commit and push manifest
+      run: |
         git add manifest.json
         git commit -m "Actualizar manifest.json"
-        git push
+        git push origin HEAD:main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       continue-on-error: true
