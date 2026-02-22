@@ -5,6 +5,9 @@ on:
     paths:
       - 'mods/**'
   workflow_dispatch:
+    
+permissions:
+  contents: write
 
 jobs:
   generate:
